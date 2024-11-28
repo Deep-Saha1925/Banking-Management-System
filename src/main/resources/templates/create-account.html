@@ -1,0 +1,177 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Create Account</title>-->
+<!--    <style>-->
+<!--        body {-->
+<!--    font-family: Arial, sans-serif;-->
+<!--    margin: 20px;-->
+<!--}-->
+
+<!--form {-->
+<!--    margin: 10px 0;-->
+<!--}-->
+
+<!--button {-->
+<!--    background-color: #4CAF50;-->
+<!--    color: white;-->
+<!--    border: none;-->
+<!--    padding: 10px 20px;-->
+<!--}-->
+
+<!--button:hover {-->
+<!--    background-color: #45a049;-->
+<!--}-->
+
+<!--        .container{-->
+<!--            margin: auto;-->
+<!--        }-->
+
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h2>Create Account</h2>-->
+<!--<div class="container">-->
+<!--    <form th:action="@{/accounts/create}" method="post">-->
+<!--        <label for="accountHolderName">Account Holder Name:</label>-->
+<!--        <input type="text" id="accountHolderName" name="accountHolderName" required>-->
+<!--        <br>-->
+<!--        <label for="accountNumber">Account Number:</label>-->
+<!--        <input type="number" id="accountNumber" name="accountNumber" required>-->
+<!--        <br>-->
+<!--        <label for="balance">Initial Deposit:</label>-->
+<!--        <input type="number" id="balance" name="balance" required>-->
+<!--        <br>-->
+<!--        <button type="submit">Create Account</button>-->
+<!--    </form>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <style>
+        /* styles.css */
+
+        /* Body styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Container for form */
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 400px;
+            text-align: center;
+        }
+
+        /* Title */
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Form styling */
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        /* Input field styling */
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            margin-top: 5px;
+        }
+
+        /* Submit Button styling */
+        .submit-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 25px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Button hover effect */
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+
+        /* Error message styling */
+        .error-message {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        /* Success message styling */
+        .success-message {
+            background-color: #dff0d8;
+            border: 1px solid #d0e9c6;
+            padding: 10px;
+            border-radius: 4px;
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Create New Account</h2>
+
+    <!-- Account Creation Form -->
+    <form id="createAccountForm" th:action="@{/accounts/create}" method="post">
+        <div class="form-group">
+            <label for="accountHolderName">Account Holder Name:</label>
+            <input type="text" id="accountHolderName" name="accountHolderName" placeholder="Enter your name"
+                   required>
+            <span id="nameError" class="error-message"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="accountNumber">Account Number:</label>
+            <input type="number" id="accountNumber" name="accountNumber" placeholder="Enter account number" required>
+            <span id="accountNumberError" class="error-message"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="initialDeposit">Initial Deposit:</label>
+            <input type="number" id="initialDeposit" name="initialDeposit" placeholder="Enter deposit amount"
+                   required>
+            <span id="initialDepositError" class="error-message"></span>
+        </div>
+
+        <button type="submit" class="submit-btn">Create Account</button>
+    </form>
+
+</div>
+
+</body>
+
+</html>

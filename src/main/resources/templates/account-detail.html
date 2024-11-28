@@ -1,0 +1,260 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org" lang="en">-->
+<!--<head>-->
+<!--    <title>Account Detail</title>-->
+<!--    <style>-->
+<!--        body {-->
+<!--    font-family: Arial, sans-serif;-->
+<!--    margin: 20px;-->
+<!--}-->
+
+<!--form {-->
+<!--    margin: 10px 0;-->
+<!--}-->
+
+<!--table {-->
+<!--    width: 100%;-->
+<!--    border-collapse: collapse;-->
+<!--}-->
+
+<!--table, th, td {-->
+<!--    border: 1px solid #ddd;-->
+<!--}-->
+
+<!--th, td {-->
+<!--    padding: 8px;-->
+<!--    text-align: left;-->
+<!--}-->
+
+<!--button {-->
+<!--    background-color: #4CAF50;-->
+<!--    color: white;-->
+<!--    border: none;-->
+<!--    padding: 10px 20px;-->
+<!--}-->
+
+<!--button:hover {-->
+<!--    background-color: #45a049;-->
+<!--}-->
+
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Account Detail</h1>-->
+
+<!--&lt;!&ndash; Display account details &ndash;&gt;-->
+<!--<div>-->
+<!--    <h3>Account Holder: <span th:text="${account.accountHolderName}"></span></h3>-->
+<!--    <h4>Account Number: <span th:text="${account.accountNumber}"></span></h4>-->
+<!--    <h4>Current Balance: $<span th:text="${account.balance}"></span></h4>-->
+<!--</div>-->
+
+<!--<hr>-->
+
+<!--&lt;!&ndash; Deposit Form &ndash;&gt;-->
+<!--<h3>Deposit Funds</h3>-->
+<!--<form th:action="@{/accounts/deposit}" method="post">-->
+<!--    <input type="hidden" name="accountNumber" th:value="${account.accountNumber}">-->
+<!--    <label for="depositAmount">Amount to Deposit:</label>-->
+<!--    <input type="number" id="depositAmount" name="amount" min="0" required>-->
+<!--    <button type="submit">Deposit</button>-->
+<!--</form>-->
+
+<!--<hr>-->
+
+<!--&lt;!&ndash; Withdraw Form &ndash;&gt;-->
+<!--<h3>Withdraw Funds</h3>-->
+<!--<form th:action="@{/accounts/withdraw}" method="post">-->
+<!--    <input type="hidden" name="accountNumber" th:value="${account.accountNumber}">-->
+<!--    <label for="withdrawAmount">Amount to Withdraw:</label>-->
+<!--    <input type="number" id="withdrawAmount" name="amount" min="0" required>-->
+<!--    <button type="submit">Withdraw</button>-->
+<!--</form>-->
+
+<!--<hr>-->
+<!--<a th:href="@{/accounts/list}">Back to Account List</a>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Details</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Page title */
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        /* Account details card */
+        .account-details-card {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: left;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .account-details-card h2 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .account-details-card p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        .actions {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .actions button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .actions button:hover {
+            background-color: #45a049;
+        }
+
+        /* Modal styling */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            width: 400px;
+            position: relative;
+        }
+
+        .modal-content h3 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .modal-content label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #555;
+        }
+
+        .modal-content input,
+        .modal-content select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        .modal-content button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .modal-content button:hover {
+            background-color: #45a049;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <h1>Account Details</h1>
+
+    <!-- Account Details Card -->
+    <div class="account-details-card">
+        <h2 id="accountHolderName"><span th:text="${account.accountHolderName}"></span></h2>
+        <p><strong>Account Number:</strong> <span th:text="${account.accountNumber}"></span></p>
+        <p><strong>Balance:</strong> $<span th:text="${account.balance}"></span></p>
+        <p><strong>Email:</strong> <span id="accountEmail">john.doe@example.com</span></p>
+        <p><strong>Phone:</strong> <span id="accountPhone">123-456-7890</span></p>
+
+        <div class="actions">
+            <form th:action="@{/accounts/edit/{id}(id=${account.id})}">
+                <button>Edit Details</button>
+            </form>
+            <form th:action="@{/accounts/deposit/{id}(id=${account.id})}">
+                <button>Deposit Amount</button>
+            </form>
+            <form th:action="@{/accounts/withdraw/{id}(id=${account.id})}">
+                <button>Withdraw Amount</button>
+            </form>
+            <form th:action="@{/accounts/list}">
+                <button>Back to List</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>
